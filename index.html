@@ -290,12 +290,6 @@
     .hero-lotus,.hero-side{display:none}
   }
 
-  @media(prefers-reduced-motion:reduce){
-    *{animation:none!important}
-    .rv{opacity:1; transform:none}
-    .mw{opacity:1}
-    .hero-media video{display:none}
-  }
 </style>
 </head>
 <body>
@@ -378,7 +372,7 @@
 
 <!-- ===== BAND ===== -->
 <section class="band" aria-label="Интерьер">
-  <div class="band-media"><img data-parallax src="https://images.pexels.com/photos/7534561/pexels-photo-7534561.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1700" alt="Светлая гостиная премиальной квартиры в дневном свете" loading="lazy" /></div>
+  <div class="band-media"><img data-parallax src="https://images.pexels.com/photos/9877524/pexels-photo-9877524.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1700" alt="Светлая гостиная премиальной квартиры в дневном свете" loading="lazy" /></div>
   <div class="band-cap">
     <p class="rv">Адрес, в котором жизнь складывается&nbsp;сама собой.</p>
     <small class="rv rv-d1">Премиальные районы Москвы</small>
@@ -399,7 +393,7 @@
         <span class="svc-title">Новостройки <span class="ar">→</span></span>
         <p class="svc-desc">Работаем только с застройщиками, за которых не стыдно через десять лет. Подбираем дом под ваш ритм, ведём по ипотеке и рассрочке без сюрпризов в договоре.</p>
       </div>
-      <figure class="svc-pic"><img src="https://images.pexels.com/photos/7534561/pexels-photo-7534561.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Интерьер светлой квартиры в новостройке" loading="lazy"></figure>
+      <figure class="svc-pic"><img src="https://images.pexels.com/photos/19899071/pexels-photo-19899071.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Интерьер светлой квартиры в новостройке" loading="lazy"></figure>
     </a>
 
     <a href="#zayavka" class="svc-item">
@@ -618,8 +612,8 @@
     a.addEventListener('click',function(e){var h=a.getAttribute('href'); if(h && h.length>1 && document.querySelector(h)){e.preventDefault(); scrollToHash(h);}});
   });
 
-  /* ============ REDUCED MOTION / NO GSAP fallback ============ */
-  if(reduce || !hasGSAP){
+  /* ============ NO-GSAP fallback (CDN failed). Motion runs for everyone, incl. reduced-motion. ============ */
+  if(!hasGSAP){
     document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});
     document.getElementById('distStage').classList.add('is-swipe');
     window.addEventListener('scroll',function(){navState(scrollY);},{passive:true}); navState(scrollY);

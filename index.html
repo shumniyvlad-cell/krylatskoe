@@ -46,15 +46,6 @@
   .grain{position:fixed; inset:0; z-index:9000; pointer-events:none; opacity:.05; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
-  /* custom cursor */
-  .cur{position:fixed; top:0; left:0; pointer-events:none; z-index:9600; mix-blend-mode:difference; will-change:transform; opacity:0}
-  .cur-dot{width:7px; height:7px; background:#fff; border-radius:50%; transform:translate(-50%,-50%)}
-  .cur-ring{width:46px; height:46px; border:1px solid rgba(255,255,255,.7); border-radius:50%; transform:translate(-50%,-50%); transition:width .35s var(--ease),height .35s var(--ease),opacity .35s,background .35s}
-  .cur-ring .clabel{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--sans); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:#fff; opacity:0; transition:opacity .3s}
-  body.cur-grow .cur-ring{width:84px; height:84px}
-  body.cur-grow .cur-ring .clabel{opacity:1}
-  body.cur-link .cur-ring{width:62px; height:62px; background:rgba(255,255,255,.12)}
-  @media (hover:none),(pointer:coarse){.cur{display:none!important}}
 
   .wrap{max-width:var(--maxw); margin:0 auto; padding-left:var(--pad); padding-right:var(--pad)}
   .eyebrow{font-size:.76rem; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-soft); font-weight:500}
@@ -108,7 +99,7 @@
   .nav-toggle span{width:26px; height:1.6px; background:var(--ink); display:block; transition:.4s var(--ease)}
 
   /* ===== HERO ===== */
-  .hero{position:relative; height:100svh; min-height:640px; display:flex; align-items:flex-end; padding-bottom:clamp(40px,7vh,90px); overflow:hidden}
+  .hero{position:relative; min-height:100svh; display:flex; align-items:flex-end; padding-top:clamp(110px,15vh,156px); padding-bottom:clamp(40px,7vh,84px); overflow:hidden}
   .hero-media{position:absolute; inset:0; z-index:0; overflow:hidden}
   .hero-media video,.hero-media .poster{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; will-change:transform}
   .hero-media .poster{background-size:cover; background-position:center}
@@ -116,7 +107,7 @@
     linear-gradient(180deg,rgba(18,20,16,.55) 0%,rgba(18,20,16,.15) 30%,rgba(18,20,16,.35) 60%,rgba(18,20,16,.82) 100%);}
   .hero-inner{position:relative; z-index:2; width:100%; max-width:var(--maxw); margin:0 auto; padding:0 var(--pad); color:#fff; will-change:transform}
   .hero .eyebrow{color:rgba(255,255,255,.85); text-shadow:0 1px 16px rgba(0,0,0,.4)}
-  .hero h1{font-size:clamp(3rem,8.4vw,8.6rem); line-height:.9; letter-spacing:-.025em; font-weight:400; margin:22px 0 0; color:#fff; text-shadow:0 2px 40px rgba(0,0,0,.35)}
+  .hero h1{font-size:clamp(2.7rem,6.6vw,6.6rem); line-height:.92; letter-spacing:-.022em; font-weight:400; margin:18px 0 0; color:#fff; text-shadow:0 2px 40px rgba(0,0,0,.35)}
   .hero h1 em{font-style:italic}
   .ln{display:block; overflow:hidden; padding-bottom:.04em}
   .w{display:inline-block; overflow:hidden; vertical-align:top}
@@ -169,26 +160,23 @@
   .band-cap p{font-family:var(--serif); font-size:clamp(1.7rem,3.6vw,3.4rem); line-height:1.14; max-width:22ch; font-style:italic; text-shadow:0 2px 30px rgba(0,0,0,.5)}
   .band-cap small{display:block; font-family:var(--sans); font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.78); margin-top:18px}
 
-  /* ===== SERVICES (interactive list) ===== */
+  /* ===== SERVICES (rows with contained image) ===== */
   .svc-intro{max-width:var(--maxw); margin:0 auto; padding:0 var(--pad)}
   .svc-intro h2{font-size:clamp(2.2rem,5.4vw,4.6rem); line-height:1.0; max-width:14ch; margin-top:10px}
   .svc-list{max-width:var(--maxw); margin:clamp(36px,6vh,64px) auto 0; padding:0 var(--pad)}
-  .svc-item{display:block; border-top:1px solid var(--line); padding:clamp(26px,3.5vw,46px) 0; position:relative; cursor:pointer}
+  .svc-item{display:grid; grid-template-columns:1fr; gap:18px; border-top:1px solid var(--line); padding:clamp(28px,3.5vw,52px) 0; align-items:center}
   .svc-item:last-child{border-bottom:1px solid var(--line)}
-  .svc-top{display:flex; align-items:baseline; gap:clamp(18px,4vw,60px)}
-  .svc-top .num{font-size:1rem; flex:none; width:40px; transition:color .4s}
-  .svc-title{font-family:var(--serif); font-size:clamp(2rem,5.5vw,4.2rem); line-height:1; letter-spacing:-.02em; transition:transform .6s var(--ease),color .4s; flex:1}
-  .svc-top .ar{font-size:1.6rem; color:var(--accent); opacity:0; transform:translateX(-12px); transition:.5s var(--ease)}
-  .svc-item:hover .svc-title{transform:translateX(18px)}
-  .svc-item:hover .svc-top .ar{opacity:1; transform:none}
-  .svc-item:hover .svc-top .num{color:var(--accent)}
-  .svc-desc{max-width:50ch; margin:14px 0 0 clamp(58px,8vw,100px); color:var(--ink-soft); line-height:1.7; font-size:1.02rem}
-  .svc-inline{display:none; margin:20px 0 4px clamp(58px,8vw,100px); overflow:hidden; aspect-ratio:16/10; max-width:560px}
-  .svc-inline img{width:100%;height:100%;object-fit:cover}
-  /* floating reveal (desktop) */
-  .svc-reveal{position:fixed; top:0; left:0; width:min(23vw,330px); aspect-ratio:4/5; z-index:600; pointer-events:none; opacity:0; overflow:hidden; transform:translate(-50%,-50%) scale(.9); will-change:transform,opacity}
-  .svc-reveal img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .5s var(--ease)}
-  .svc-reveal img.active{opacity:1}
+  @media(min-width:760px){ .svc-item{grid-template-columns:46px 1fr clamp(240px,30vw,400px); gap:clamp(24px,4vw,60px)} }
+  .svc-item .num{font-size:1rem; transition:color .4s}
+  .svc-title{font-family:var(--serif); font-size:clamp(2rem,4.8vw,3.7rem); line-height:1.02; letter-spacing:-.02em; transition:transform .55s var(--ease),color .4s; display:inline-flex; align-items:baseline; gap:.32em}
+  .svc-title .ar{font-size:.46em; color:var(--accent); opacity:0; transform:translateX(-10px); transition:.5s var(--ease)}
+  .svc-desc{max-width:46ch; margin-top:15px; color:var(--ink-soft); line-height:1.7; font-size:1.02rem}
+  .svc-pic{overflow:hidden; aspect-ratio:4/3; min-height:165px}
+  .svc-pic img{width:100%; height:100%; object-fit:cover; transition:transform 1.2s var(--ease)}
+  .svc-item:hover .svc-pic img{transform:scale(1.06)}
+  .svc-item:hover .svc-title{transform:translateX(10px)}
+  .svc-item:hover .svc-title .ar{opacity:1; transform:none}
+  .svc-item:hover .num{color:var(--accent)}
 
   /* ===== DISTRICTS (horizontal) ===== */
   .districts{background:linear-gradient(180deg,var(--bg-alt) 0%,var(--bg) 100%); overflow:hidden}
@@ -300,8 +288,6 @@
     .menu-open .nav-toggle span:nth-child(2){opacity:0}
     .menu-open .nav-toggle span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
     .hero-lotus,.hero-side{display:none}
-    .svc-inline{display:block}
-    .svc-desc{margin-left:clamp(40px,12vw,60px)}
   }
 
   @media(prefers-reduced-motion:reduce){
@@ -315,7 +301,6 @@
 <body>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
-<div class="cur" id="cur" aria-hidden="true"><div class="cur-ring"><span class="clabel" id="clabel"></span></div><div class="cur-dot"></div></div>
 
 <!-- ===== NAV ===== -->
 <header id="hdr" class="hero-light">
@@ -408,26 +393,34 @@
   </div>
   <div class="svc-list">
 
-    <a href="#zayavka" class="svc-item" data-cursor="Смотреть" data-img="https://images.pexels.com/photos/7534561/pexels-photo-7534561.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900">
-      <div class="svc-top"><span class="num">01</span><span class="svc-title">Новостройки</span><span class="ar">→</span></div>
-      <p class="svc-desc">Работаем только с застройщиками, за которых не стыдно через десять лет. Подбираем дом под ваш ритм, ведём по ипотеке и рассрочке без сюрпризов в договоре.</p>
-      <figure class="svc-inline"><img src="https://images.pexels.com/photos/7534561/pexels-photo-7534561.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Интерьер квартиры в новостройке" loading="lazy"></figure>
+    <a href="#zayavka" class="svc-item">
+      <span class="num">01</span>
+      <div class="svc-body">
+        <span class="svc-title">Новостройки <span class="ar">→</span></span>
+        <p class="svc-desc">Работаем только с застройщиками, за которых не стыдно через десять лет. Подбираем дом под ваш ритм, ведём по ипотеке и рассрочке без сюрпризов в договоре.</p>
+      </div>
+      <figure class="svc-pic"><img src="https://images.pexels.com/photos/7534561/pexels-photo-7534561.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Интерьер светлой квартиры в новостройке" loading="lazy"></figure>
     </a>
 
-    <a href="#zayavka" class="svc-item" data-cursor="Смотреть" data-img="https://images.pexels.com/photos/7851906/pexels-photo-7851906.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900">
-      <div class="svc-top"><span class="num">02</span><span class="svc-title">Вторичная недвижимость</span><span class="ar">→</span></div>
-      <p class="svc-desc">Покупка и продажа со взрослым подходом к деталям: проверка истории квартиры, банки, нотариусы, МФЦ — всё на нашей стороне, чтобы сделка прошла без вашего участия в очередях.</p>
-      <figure class="svc-inline"><img src="https://images.pexels.com/photos/7851906/pexels-photo-7851906.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Уютная гостиная с тёплым светом" loading="lazy"></figure>
+    <a href="#zayavka" class="svc-item">
+      <span class="num">02</span>
+      <div class="svc-body">
+        <span class="svc-title">Вторичная недвижимость <span class="ar">→</span></span>
+        <p class="svc-desc">Покупка и продажа со взрослым подходом к деталям: проверка истории квартиры, банки, нотариусы, МФЦ — всё на нашей стороне, чтобы сделка прошла без вашего участия в очередях.</p>
+      </div>
+      <figure class="svc-pic"><img src="https://images.pexels.com/photos/7851906/pexels-photo-7851906.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Уютная гостиная с тёплым светом" loading="lazy"></figure>
     </a>
 
-    <a href="#zayavka" class="svc-item" data-cursor="Смотреть" data-img="https://images.pexels.com/photos/5556585/pexels-photo-5556585.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900">
-      <div class="svc-top"><span class="num">03</span><span class="svc-title">Инвесторам</span><span class="ar">→</span></div>
-      <p class="svc-desc">Смотрим на недвижимость как на актив, а не как на эмоцию: где растёт цена, что сдаётся весь год, а что простаивает. Считаем доходность до того, как вы примете решение.</p>
-      <figure class="svc-inline"><img src="https://images.pexels.com/photos/5556585/pexels-photo-5556585.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Фасады современных жилых домов на закате" loading="lazy"></figure>
+    <a href="#zayavka" class="svc-item">
+      <span class="num">03</span>
+      <div class="svc-body">
+        <span class="svc-title">Инвесторам <span class="ar">→</span></span>
+        <p class="svc-desc">Смотрим на недвижимость как на актив, а не как на эмоцию: где растёт цена, что сдаётся весь год, а что простаивает. Считаем доходность до того, как вы примете решение.</p>
+      </div>
+      <figure class="svc-pic"><img src="https://images.pexels.com/photos/5556585/pexels-photo-5556585.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Фасады современных жилых домов на закате" loading="lazy"></figure>
     </a>
 
   </div>
-  <div class="svc-reveal" id="svcReveal" aria-hidden="true"></div>
 </section>
 
 <!-- ===== DISTRICTS (horizontal) ===== -->
@@ -442,25 +435,25 @@
   <div class="dist-stage" id="distStage">
     <div class="dist-track" id="distTrack">
 
-      <article class="dist-card" data-cursor="Район">
+      <article class="dist-card">
         <figure class="dist-photo"><span class="didx">01</span><img data-dparallax src="https://images.pexels.com/photos/5503660/pexels-photo-5503660.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Осенний парк с прудом" loading="lazy" /></figure>
         <div class="dist-meta"><h3>Крылатское</h3><span class="tag">Лес, вода и тишина</span></div>
         <p>Холмы, гребной канал и велодорожки прямо под окнами — район, где Москва дышит свободнее и медленнее, чем хочет показаться.</p>
       </article>
 
-      <article class="dist-card" data-cursor="Район">
+      <article class="dist-card">
         <figure class="dist-photo"><span class="didx">02</span><img data-dparallax src="https://images.pexels.com/photos/12900775/pexels-photo-12900775.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Панорама Москвы с рекой на закате" loading="lazy" /></figure>
         <div class="dist-meta"><h3>Хамовники</h3><span class="tag">Тихий центр</span></div>
         <p>Особняки, переулки и Москва-река в шаговой доступности: жизнь в самом сердце города, но без его шума и спешки.</p>
       </article>
 
-      <article class="dist-card" data-cursor="Район">
+      <article class="dist-card">
         <figure class="dist-photo"><span class="didx">03</span><img data-dparallax src="https://images.pexels.com/photos/7673904/pexels-photo-7673904.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Высотные дома со стеклянными фасадами" loading="lazy" /></figure>
         <div class="dist-meta"><h3>Пресня · Сити</h3><span class="tag">Город на высоте</span></div>
         <p>Панорамы из окон до горизонта, деловой пульс и набережная внизу — для тех, кому энергия мегаполиса нужна каждый день.</p>
       </article>
 
-      <article class="dist-card" data-cursor="Район">
+      <article class="dist-card">
         <figure class="dist-photo"><span class="didx">04</span><img data-dparallax src="https://images.pexels.com/photos/17783341/pexels-photo-17783341.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Осенние деревья в городском парке" loading="lazy" /></figure>
         <div class="dist-meta"><h3>Раменки · Воробьёвы</h3><span class="tag">Зелёный квартал</span></div>
         <p>Парки, виды на город со смотровой и спокойный академический воздух — район для семей, которые ценят простор и порядок.</p>
@@ -629,7 +622,6 @@
   if(reduce || !hasGSAP){
     document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});
     document.getElementById('distStage').classList.add('is-swipe');
-    var _cur=document.getElementById('cur'); if(_cur) _cur.style.display='none';
     window.addEventListener('scroll',function(){navState(scrollY);},{passive:true}); navState(scrollY);
     return;
   }
@@ -744,27 +736,10 @@
     gsap.fromTo(img,{yPercent:-4},{yPercent:4,ease:'none',scrollTrigger:{trigger:img,start:'top bottom',end:'bottom top',scrub:true}});
   });
 
-  /* ---------- SERVICES: cursor-follow reveal ---------- */
-  (function(){
-    if(!finePointer) return;
-    var reveal=document.getElementById('svcReveal'); var imgs={};
-    var list=document.querySelector('.svc-list');
-    var setX=gsap.quickTo(reveal,'x',{duration:.5,ease:'power3'});
-    var setY=gsap.quickTo(reveal,'y',{duration:.5,ease:'power3'});
-    var shown=false;
-    function show(im){ shown=true; for(var k in imgs){imgs[k].classList.remove('active');} im.classList.add('active'); gsap.to(reveal,{opacity:1,scale:1,duration:.5,ease:'power3.out',overwrite:'auto'}); }
-    function hide(){ if(!shown)return; shown=false; gsap.to(reveal,{opacity:0,scale:.9,duration:.35,ease:'power2.out',overwrite:'auto'}); }
-    document.querySelectorAll('.svc-item').forEach(function(item){
-      var src=item.getAttribute('data-img');
-      var im=document.createElement('img'); im.src=src; reveal.appendChild(im); imgs[src]=im;
-      item.addEventListener('mouseenter',function(){ show(im); });
-    });
-    if(list) list.addEventListener('mouseleave', hide);
-    window.addEventListener('mousemove',function(e){ setX(e.clientX); setY(e.clientY); });
-    window.addEventListener('blur', hide);
-    document.addEventListener('mouseleave', hide);
-    lenis.on('scroll', hide);
-  })();
+  /* ---------- SERVICES: rows reveal ---------- */
+  gsap.utils.toArray('.svc-item').forEach(function(item){
+    gsap.fromTo(item,{y:30,opacity:0},{y:0,opacity:1,duration:.9,ease:'power3.out',scrollTrigger:{trigger:item,start:'top 86%'}});
+  });
 
   /* ---------- DISTRICTS: drag gallery + progress + reveal ---------- */
   (function(){
@@ -793,22 +768,6 @@
       var qx=gsap.quickTo(el,'x',{duration:.4,ease:'power3'}), qy=gsap.quickTo(el,'y',{duration:.4,ease:'power3'});
       el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect(); qx((e.clientX-(r.left+r.width/2))*0.35); qy((e.clientY-(r.top+r.height/2))*0.45);});
       el.addEventListener('mouseleave',function(){qx(0);qy(0);});
-    });
-  }
-
-  /* ---------- CUSTOM CURSOR ---------- */
-  if(finePointer){
-    var cur=document.getElementById('cur'), clabel=document.getElementById('clabel');
-    var cx=gsap.quickTo(cur,'x',{duration:.25,ease:'power3'}), cy=gsap.quickTo(cur,'y',{duration:.25,ease:'power3'});
-    gsap.set(cur,{opacity:0});
-    window.addEventListener('mousemove',function(e){ cx(e.clientX); cy(e.clientY); gsap.to(cur,{opacity:1,duration:.3,overwrite:'auto'}); });
-    document.querySelectorAll('[data-cursor]').forEach(function(el){
-      el.addEventListener('mouseenter',function(){document.body.classList.add('cur-grow'); clabel.textContent=el.getAttribute('data-cursor');});
-      el.addEventListener('mouseleave',function(){document.body.classList.remove('cur-grow');});
-    });
-    document.querySelectorAll('a:not([data-cursor]),button,.svc-item').forEach(function(el){
-      el.addEventListener('mouseenter',function(){document.body.classList.add('cur-link');});
-      el.addEventListener('mouseleave',function(){document.body.classList.remove('cur-link');});
     });
   }
 
